@@ -7,531 +7,114 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --blue: #1a56db;
-    --blue-light: #e8f0fe;
-    --blue-mid: #3b82f6;
-    --accent: #f59e0b;
-    --accent-light: #fef3c7;
-    --dark: #0f172a;
-    --mid: #334155;
-    --muted: #64748b;
-    --border: #e2e8f0;
-    --surface: #f8fafc;
-    --white: #ffffff;
+    --blue: #1a56db; --blue-light: #e8f0fe; --blue-mid: #3b82f6;
+    --accent: #f59e0b; --accent-light: #fef3c7;
+    --dark: #0f172a; --mid: #334155; --muted: #64748b;
+    --border: #e2e8f0; --surface: #f8fafc; --white: #ffffff;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--dark);
-    color: var(--white);
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+  body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; min-height: 100vh; }
 
   /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2.5rem;
-    background: rgba(15,23,42,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: -0.02em;
-    color: var(--white);
-    text-decoration: none;
-  }
-
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; background: rgba(15,23,42,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--white); text-decoration: none; }
   .nav-logo span { color: var(--accent); }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.55); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
 
+  /* LANG SWITCH */
+  .lang-switch { display: flex; gap: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; padding: 3px; }
+  .lang-btn { font-size: 0.72rem; font-weight: 600; padding: 4px 11px; border-radius: 100px; border: none; cursor: pointer; transition: all 0.2s; background: transparent; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+  .lang-btn.active { background: var(--accent); color: var(--dark); }
+
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 6rem 2.5rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 30%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 28px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  .hero-name {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 800;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.4rem;
-    color: var(--white);
-  }
-
-  .hero-name .line2 {
-    color: var(--white);
-  }
-
-  .hero-title {
-    font-size: 1.05rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 2rem;
-    letter-spacing: 0.01em;
-  }
-
-  .hero-title strong {
-    color: var(--blue-mid);
-    font-weight: 500;
-  }
-
-  .hero-summary {
-    font-size: 1.05rem;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.72);
-    max-width: 680px;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 2.5rem;
-  }
-
-  .tag {
-    font-size: 0.76rem;
-    font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 100px;
-    letter-spacing: 0.02em;
-  }
-
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 6rem 2.5rem 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 30%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 900px; margin: 0 auto; width: 100%; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  .hero-name { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 0.4rem; color: var(--white); }
+  .hero-title { font-size: 1.05rem; font-weight: 400; color: rgba(255,255,255,0.55); margin-bottom: 2rem; letter-spacing: 0.01em; }
+  .hero-title strong { color: var(--blue-mid); font-weight: 500; }
+  .hero-summary { font-size: 1.05rem; line-height: 1.75; color: rgba(255,255,255,0.72); max-width: 680px; margin-bottom: 2.5rem; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+  .tag { font-size: 0.76rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; letter-spacing: 0.02em; }
   .tag-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
   .tag-amber { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
   .tag-teal { background: rgba(20,184,166,0.12); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--dark);
-    background: var(--white);
-    padding: 10px 22px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: transform 0.2s, background 0.2s;
-  }
-
+  .hero-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 500; color: var(--dark); background: var(--white); padding: 10px 22px; border-radius: 100px; text-decoration: none; transition: transform 0.2s, background 0.2s; }
   .hero-cta:hover { background: #e2e8f0; transform: translateY(-1px); }
-
-  .hero-contact-row {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1.2rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-contact-row a {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s;
-  }
-
+  .hero-contact-row { display: flex; gap: 1.5rem; margin-top: 1.2rem; flex-wrap: wrap; }
+  .hero-contact-row a { font-size: 0.82rem; color: rgba(255,255,255,0.45); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
   .hero-contact-row a:hover { color: rgba(255,255,255,0.85); }
 
   /* SECTIONS */
-  section {
-    padding: 5rem 2.5rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .section-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 3rem;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-  }
+  section { padding: 5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-label { display: flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
 
   /* EXPERIENCE */
-  .exp-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
-  .exp-card {
-    display: grid;
-    grid-template-columns: 1fr 2.4fr;
-    gap: 2rem;
-    padding: 2rem;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 16px;
-    background: rgba(255,255,255,0.025);
-    transition: border-color 0.25s, background 0.25s;
-    cursor: pointer;
-  }
-
-  .exp-card:hover, .exp-card.active {
-    border-color: rgba(59,130,246,0.35);
-    background: rgba(59,130,246,0.04);
-  }
-
+  .exp-grid { display: flex; flex-direction: column; gap: 2.5rem; }
+  .exp-card { display: grid; grid-template-columns: 1fr 2.4fr; gap: 2rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; background: rgba(255,255,255,0.025); transition: border-color 0.25s, background 0.25s; cursor: pointer; }
+  .exp-card:hover, .exp-card.active { border-color: rgba(59,130,246,0.35); background: rgba(59,130,246,0.04); }
   .exp-meta { padding-top: 2px; }
-
-  .exp-period {
-    font-size: 0.76rem;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    margin-bottom: 0.5rem;
-  }
-
-  .exp-company {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.2rem;
-  }
-
-  .exp-location {
-    font-size: 0.76rem;
-    color: var(--muted);
-  }
-
-  .exp-role {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--blue-mid);
-    margin-bottom: 0.85rem;
-    letter-spacing: 0.01em;
-  }
-
-  .exp-desc {
-    font-size: 0.88rem;
-    line-height: 1.72;
-    color: rgba(255,255,255,0.62);
-    margin-bottom: 1rem;
-  }
-
-  .exp-bullets {
-    display: none;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-top: 0.5rem;
-  }
-
+  .exp-period { font-size: 0.76rem; font-weight: 500; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+  .exp-company { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+  .exp-location { font-size: 0.76rem; color: var(--muted); }
+  .exp-role { font-size: 0.85rem; font-weight: 600; color: var(--blue-mid); margin-bottom: 0.85rem; letter-spacing: 0.01em; }
+  .exp-desc { font-size: 0.88rem; line-height: 1.72; color: rgba(255,255,255,0.62); margin-bottom: 1rem; }
+  .exp-bullets { display: none; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
   .exp-card.active .exp-bullets { display: flex; }
-
-  .exp-bullet {
-    font-size: 0.83rem;
-    line-height: 1.65;
-    color: rgba(255,255,255,0.55);
-    display: flex;
-    gap: 10px;
-  }
-
-  .exp-bullet::before {
-    content: '—';
-    color: var(--blue-mid);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .exp-achievement {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #4ade80;
-    background: rgba(74,222,128,0.1);
-    border: 1px solid rgba(74,222,128,0.2);
-    padding: 3px 10px;
-    border-radius: 100px;
-    margin-top: 0.75rem;
-  }
-
-  .exp-toggle {
-    font-size: 0.75rem;
-    color: var(--blue-mid);
-    margin-top: 0.75rem;
-    cursor: pointer;
-    user-select: none;
-  }
+  .exp-bullet { font-size: 0.83rem; line-height: 1.65; color: rgba(255,255,255,0.55); display: flex; gap: 10px; }
+  .exp-bullet::before { content: '—'; color: var(--blue-mid); flex-shrink: 0; margin-top: 1px; }
+  .exp-achievement { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; color: #4ade80; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); padding: 3px 10px; border-radius: 100px; margin-top: 0.75rem; }
+  .exp-toggle { font-size: 0.75rem; color: var(--blue-mid); margin-top: 0.75rem; cursor: pointer; user-select: none; }
 
   /* EDUCATION */
-  .edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .edu-card {
-    padding: 1.5rem;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 14px;
-    background: rgba(255,255,255,0.02);
-    transition: border-color 0.2s;
-  }
-
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .edu-card { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; background: rgba(255,255,255,0.02); transition: border-color 0.2s; }
   .edu-card:hover { border-color: rgba(245,158,11,0.3); }
-
-  .edu-year {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.6rem;
-  }
-
-  .edu-institution {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.3rem;
-    line-height: 1.3;
-  }
-
-  .edu-degree {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.5;
-  }
-
-  .edu-badge {
-    display: inline-block;
-    margin-top: 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 100px;
-    background: rgba(59,130,246,0.12);
-    color: #93c5fd;
-    border: 1px solid rgba(59,130,246,0.2);
-  }
+  .edu-year { font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .edu-institution { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; line-height: 1.3; }
+  .edu-degree { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+  .edu-badge { display: inline-block; margin-top: 0.75rem; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
 
   /* LOGROS */
-  .logros-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .logro-card {
-    padding: 1.75rem;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 14px;
-    background: rgba(255,255,255,0.02);
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    transition: border-color 0.2s;
-  }
-
+  .logros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .logro-card { padding: 1.75rem; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; gap: 0.6rem; transition: border-color 0.2s; }
   .logro-card:hover { border-color: rgba(245,158,11,0.3); }
+  .logro-year { font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; }
+  .logro-title { font-family: 'Syne', sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--white); line-height: 1.3; }
+  .logro-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
 
-  .logro-year {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-  }
-
-  .logro-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.98rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.3;
-  }
-
-  .logro-desc {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.6;
-  }
+  /* TOOLS */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .tools-category { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; background: rgba(255,255,255,0.02); transition: border-color 0.2s; }
+  .tools-category:hover { border-color: rgba(59,130,246,0.25); }
+  .tools-cat-title { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 1rem; }
+  .tools-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tool-pill { font-size: 0.76rem; font-weight: 400; padding: 4px 11px; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.65); }
 
   /* FOOTER */
-  footer {
-    padding: 2.5rem;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
+  footer { padding: 2.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+  footer p { font-size: 0.78rem; color: var(--muted); }
+  footer a { color: var(--blue-mid); text-decoration: none; }
 
-  footer p {
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  footer a {
-    color: var(--blue-mid);
-    text-decoration: none;
-  }
-
-  /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 640px) {
     nav { padding: 1rem 1.25rem; }
-    .nav-links { gap: 1.2rem; }
+    .nav-links { gap: 0.8rem; }
     .hero { padding: 5rem 1.25rem 3rem; }
     section { padding: 3.5rem 1.25rem; }
     .exp-card { grid-template-columns: 1fr; gap: 0.75rem; }
   }
-
-  /* TOOLS */
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .tools-category {
-    padding: 1.5rem;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 14px;
-    background: rgba(255,255,255,0.02);
-    transition: border-color 0.2s;
-  }
-
-  .tools-category:hover { border-color: rgba(59,130,246,0.25); }
-
-  .tools-cat-title {
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--blue-mid);
-    margin-bottom: 1rem;
-  }
-
-  .tools-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tool-pill {
-    font-size: 0.76rem;
-    font-weight: 400;
-    padding: 4px 11px;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.65);
-  }
-
 </style>
 </head>
 <body>
@@ -539,42 +122,42 @@
 <nav>
   <a class="nav-logo" href="#inicio">CT<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#experiencia">Experiencia</a></li>
-    <li><a href="#educacion">Educación</a></li>
-    <li><a href="#logros">Logros</a></li>
-    <li><a href="#herramientas">Herramientas</a></li>
-    <li><a href="mailto:camilo.torres.riveros@gmail.com">Contacto</a></li>
+    <li><a href="#experiencia" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+    <li><a href="#educacion" data-es="Educación" data-en="Education">Educación</a></li>
+    <li><a href="#logros" data-es="Logros" data-en="Achievements">Logros</a></li>
+    <li><a href="#herramientas" data-es="Herramientas" data-en="Tools">Herramientas</a></li>
+    <li><a href="mailto:camilo.torres.riveros@gmail.com" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    <li>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Perfil profesional</div>
-    <h1 class="hero-name">
-      Camilo<br>
-      <span class="line2">Torres.</span>
-    </h1>
+    <div class="hero-eyebrow" data-es="Perfil profesional" data-en="Professional profile">Perfil profesional</div>
+    <h1 class="hero-name">Camilo<br>Torres.</h1>
     <p class="hero-title">Head of Audiences, Media & Performance · <strong>TuBoleta Colombia</strong></p>
-
-    <p class="hero-summary">
+    <p class="hero-summary" data-es="Psicólogo bilingüe con MBA y formación en Antropología. Más de 8 años de experiencia en agencias de medios, investigación de mercados y ecommerce. Especializado en estrategias de performance data-driven que conectan marcas con sus audiencias a través de canales pagos, propios y ganados — desde la segmentación hasta la medición y los resultados de negocio." data-en="Bilingual psychologist with an MBA and background in Anthropology. Over 8 years of experience across media agencies, market research firms, and e-commerce. Specialized in data-driven performance strategies that connect brands with their audiences across paid, owned, and earned channels — from segmentation through measurement to business results.">
       Psicólogo bilingüe con MBA y formación en Antropología. Más de 8 años de experiencia en agencias de medios, investigación de mercados y ecommerce. Especializado en estrategias de performance data-driven que conectan marcas con sus audiencias a través de canales pagos, propios y ganados — desde la segmentación hasta la medición y los resultados de negocio.
     </p>
-
     <div class="hero-tags">
-      <span class="tag tag-blue">Performance Marketing</span>
-      <span class="tag tag-blue">Marketing Digital</span>
-      <span class="tag tag-blue">Estrategia de Audiencias</span>
-      <span class="tag tag-blue">Medios Orgánicos</span>
-      <span class="tag tag-amber">First-Party Data</span>
-      <span class="tag tag-amber">CRM & Automatización</span>
-      <span class="tag tag-teal">Investigación de Mercados</span>
-      <span class="tag tag-teal">Analítica Digital</span>
+      <span class="tag tag-blue" data-es="Performance Marketing" data-en="Performance Marketing">Performance Marketing</span>
+      <span class="tag tag-blue" data-es="Marketing Digital" data-en="Digital Marketing">Marketing Digital</span>
+      <span class="tag tag-blue" data-es="Estrategia de Audiencias" data-en="Audience Strategy">Estrategia de Audiencias</span>
+      <span class="tag tag-blue" data-es="Medios Orgánicos" data-en="Organic Media">Medios Orgánicos</span>
+      <span class="tag tag-amber" data-es="First-Party Data" data-en="First-Party Data">First-Party Data</span>
+      <span class="tag tag-amber" data-es="CRM & Automatización" data-en="CRM & Automation">CRM & Automatización</span>
+      <span class="tag tag-teal" data-es="Investigación de Mercados" data-en="Market Research">Investigación de Mercados</span>
+      <span class="tag tag-teal" data-es="Analítica Digital" data-en="Digital Analytics">Analítica Digital</span>
     </div>
-
     <div>
       <a class="hero-cta" href="https://www.linkedin.com/in/camilo-torres-riveros-96a07b149" target="_blank">
-        Ver LinkedIn →
+        <span data-es="Ver LinkedIn →" data-en="View LinkedIn →">Ver LinkedIn →</span>
       </a>
       <div class="hero-contact-row">
         <a href="mailto:camilo.torres.riveros@gmail.com">✉ camilo.torres.riveros@gmail.com</a>
@@ -588,101 +171,98 @@
 <!-- EXPERIENCIA -->
 <section id="experiencia">
   <div class="section-inner">
-    <div class="section-label">Experiencia laboral</div>
+    <div class="section-label" data-es="Experiencia laboral" data-en="Work experience">Experiencia laboral</div>
     <div class="exp-grid">
 
-      <!-- TuBoleta -->
       <div class="exp-card reveal" onclick="toggleCard(this)">
         <div class="exp-meta">
-          <div class="exp-period">Dic 2025 — Jun 2026</div>
+          <div class="exp-period" data-es="Dic 2025 — Jun 2026" data-en="Dec 2025 — Jun 2026">Dic 2025 — Jun 2026</div>
           <div class="exp-company">TuBoleta</div>
           <div class="exp-location">Bogotá, Colombia</div>
         </div>
         <div>
           <div class="exp-role">Head of Audiences, Media & Performance</div>
-          <div class="exp-desc">Responsable de liderar la estrategia digital desde los canales pagos, propios y ganados, con el objetivo de construir relaciones relevantes con el consumidor y maximizar el performance de las acciones de marketing con un enfoque data-driven; así como generar nuevas fuentes de monetización.</div>
-          <div class="exp-bullets">
-            <div class="exp-bullet">Medios propios: Gestionar la configuración del CRM para garantizar una comunicación personalizada y relevante en cada etapa del journey del cliente, asegurando el uso eficiente de los canales propios y evitando la saturación de la audiencia.</div>
-            <div class="exp-bullet">Medios pagos: Definir la estrategia de paid media orientada a la maximización de ventas con un uso eficiente del presupuesto, acompañado de la expansión hacia nuevos canales publicitarios.</div>
-            <div class="exp-bullet">Medios ganados: Guiar la estrategia de redes sociales del grupo con foco en la construcción de comunidad, el crecimiento del engagement y la generación de contenido de valor.</div>
-            <div class="exp-bullet">Nuevas fuentes de ingreso: Desarrollar modelos de negocio orientados a la monetización de la first-party data y los activos digitales de la empresa.</div>
-            <div class="exp-bullet">Analítica y medición digital: Garantizar la medición y análisis integral del ecommerce mediante GA4, incluyendo la correcta configuración server-side para Meta, TikTok y Google Ads a través de GTM y Conversions API (CAPI).</div>
+          <div class="exp-desc" data-es="Responsable de liderar la estrategia digital desde los canales pagos, propios y ganados, con el objetivo de construir relaciones relevantes con el consumidor y maximizar el performance de las acciones de marketing con un enfoque data-driven; así como generar nuevas fuentes de monetización." data-en="Responsible for leading the digital strategy across paid, owned, and earned channels, with the goal of building meaningful consumer relationships and maximizing marketing performance through a data-driven approach; as well as developing new monetization sources.">
+            Responsable de liderar la estrategia digital desde los canales pagos, propios y ganados, con el objetivo de construir relaciones relevantes con el consumidor y maximizar el performance de las acciones de marketing con un enfoque data-driven; así como generar nuevas fuentes de monetización.
           </div>
-          <div class="exp-toggle">+ Ver detalle</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet" data-es="Medios propios: Gestionar la configuración del CRM para garantizar una comunicación personalizada y relevante en cada etapa del journey del cliente, asegurando el uso eficiente de los canales propios y evitando la saturación de la audiencia." data-en="Owned media: Managing CRM configuration to ensure personalized and relevant communication at every stage of the customer journey, driving efficient use of owned channels while preventing audience fatigue.">Medios propios: Gestionar la configuración del CRM para garantizar una comunicación personalizada y relevante en cada etapa del journey del cliente, asegurando el uso eficiente de los canales propios y evitando la saturación de la audiencia.</div>
+            <div class="exp-bullet" data-es="Medios pagos: Definir la estrategia de paid media orientada a la maximización de ventas con un uso eficiente del presupuesto, acompañado de la expansión hacia nuevos canales publicitarios." data-en="Paid media: Defining the paid media strategy aimed at maximizing sales with efficient budget allocation, alongside the expansion into new advertising channels.">Medios pagos: Definir la estrategia de paid media orientada a la maximización de ventas con un uso eficiente del presupuesto, acompañado de la expansión hacia nuevos canales publicitarios.</div>
+            <div class="exp-bullet" data-es="Medios ganados: Guiar la estrategia de redes sociales del grupo con foco en la construcción de comunidad, el crecimiento del engagement y la generación de contenido de valor." data-en="Earned media: Guiding the group's social media strategy with a focus on community building, engagement growth, and value-driven content creation.">Medios ganados: Guiar la estrategia de redes sociales del grupo con foco en la construcción de comunidad, el crecimiento del engagement y la generación de contenido de valor.</div>
+            <div class="exp-bullet" data-es="Nuevas fuentes de ingreso: Desarrollar modelos de negocio orientados a la monetización de la first-party data y los activos digitales de la empresa." data-en="New revenue streams: Developing business models oriented toward the monetization of the company's first-party data and digital assets.">Nuevas fuentes de ingreso: Desarrollar modelos de negocio orientados a la monetización de la first-party data y los activos digitales de la empresa.</div>
+            <div class="exp-bullet" data-es="Analítica y medición digital: Garantizar la medición y análisis integral del ecommerce mediante GA4, incluyendo la correcta configuración server-side para Meta, TikTok y Google Ads a través de GTM y Conversions API (CAPI)." data-en="Digital analytics & measurement: Ensuring comprehensive ecommerce measurement and analysis through GA4, including the correct server-side configuration for Meta, TikTok, and Google Ads via GTM and Conversions API (CAPI).">Analítica y medición digital: Garantizar la medición y análisis integral del ecommerce mediante GA4, incluyendo la correcta configuración server-side para Meta, TikTok y Google Ads a través de GTM y Conversions API (CAPI).</div>
+          </div>
+          <div class="exp-toggle" data-es="+ Ver detalle" data-en="+ View details">+ Ver detalle</div>
         </div>
       </div>
 
-      <!-- Havas -->
       <div class="exp-card reveal" onclick="toggleCard(this)">
         <div class="exp-meta">
-          <div class="exp-period">Jun 2024 — Dic 2025</div>
+          <div class="exp-period" data-es="Jun 2024 — Dic 2025" data-en="Jun 2024 — Dec 2025">Jun 2024 — Dic 2025</div>
           <div class="exp-company">Havas</div>
           <div class="exp-location">Bogotá, Colombia</div>
         </div>
         <div>
           <div class="exp-role">Regional Audience Manager</div>
-          <div class="exp-desc">Lideré la implementación, mejora continua y monetización del DMP para Latinoamérica, posicionándolo como pilar fundamental en la estrategia de datos de los clientes del grupo.</div>
+          <div class="exp-desc" data-es="Lideré la implementación, mejora continua y monetización del DMP para Latinoamérica, posicionándolo como pilar fundamental en la estrategia de datos de los clientes del grupo." data-en="Led the implementation, continuous improvement, and monetization of the DMP for Latin America, positioning it as a fundamental pillar in the group's client data strategy.">Lideré la implementación, mejora continua y monetización del DMP para Latinoamérica, posicionándolo como pilar fundamental en la estrategia de datos de los clientes del grupo.</div>
           <div class="exp-bullets">
-            <div class="exp-bullet">Gestioné la recolección de first-party data, enriquecimiento con third-party data y activación de audiencias en mercados de toda Latam.</div>
-            <div class="exp-bullet">Construí la visión regional para la unificación y activación del CDP global en cada mercado, maximizando la rentabilidad de campañas en medios pagos y propios.</div>
-            <div class="exp-bullet">Lideré la adopción regional de la suite Converged para segmentaciones avanzadas en Meta, TikTok y DV360.</div>
+            <div class="exp-bullet" data-es="Gestioné la recolección de first-party data, enriquecimiento con third-party data y activación de audiencias en mercados de toda Latam." data-en="Managed first-party data collection, third-party data enrichment, and audience activation across all Latin American markets.">Gestioné la recolección de first-party data, enriquecimiento con third-party data y activación de audiencias en mercados de toda Latam.</div>
+            <div class="exp-bullet" data-es="Construí la visión regional para la unificación y activación del CDP global en cada mercado, maximizando la rentabilidad de campañas en medios pagos y propios." data-en="Built the regional vision for the unification and activation of the global CDP in each market, maximizing campaign profitability across paid and owned media.">Construí la visión regional para la unificación y activación del CDP global en cada mercado, maximizando la rentabilidad de campañas en medios pagos y propios.</div>
+            <div class="exp-bullet" data-es="Lideré la adopción regional de la suite Converged para segmentaciones avanzadas en Meta, TikTok y DV360." data-en="Led the regional adoption of the Converged suite for advanced segmentation on Meta, TikTok, and DV360.">Lideré la adopción regional de la suite Converged para segmentaciones avanzadas en Meta, TikTok y DV360.</div>
           </div>
-          <div class="exp-achievement">↑ 30% mejora en CTR y CPC en campañas de branding</div>
-          <div class="exp-toggle">+ Ver detalle</div>
+          <div class="exp-achievement" data-es="↑ 30% mejora en CTR y CPC en campañas de branding" data-en="↑ 30% improvement in CTR and CPC on branding campaigns">↑ 30% mejora en CTR y CPC en campañas de branding</div>
+          <div class="exp-toggle" data-es="+ Ver detalle" data-en="+ View details">+ Ver detalle</div>
         </div>
       </div>
 
-      <!-- Dentsu -->
       <div class="exp-card reveal" onclick="toggleCard(this)">
         <div class="exp-meta">
-          <div class="exp-period">Abr 2021 — Jun 2024</div>
+          <div class="exp-period" data-es="Abr 2021 — Jun 2024" data-en="Apr 2021 — Jun 2024">Abr 2021 — Jun 2024</div>
           <div class="exp-company">Dentsu</div>
           <div class="exp-location">Ciudad de México, México</div>
         </div>
         <div>
           <div class="exp-role">Data & Research Analyst</div>
-          <div class="exp-desc">Responsable de la estrategia de first y third-party data para México, a través de la configuración, administración y comercialización del DMP y CDP Navegg, para marcas como Nivea, TV Azteca y GroupeSeb.</div>
+          <div class="exp-desc" data-es="Responsable de la estrategia de first y third-party data para México, a través de la configuración, administración y comercialización del DMP y CDP Navegg, para marcas como Nivea, TV Azteca y GroupeSeb." data-en="Responsible for the first and third-party data strategy for Mexico, through the configuration, management, and commercialization of the Navegg DMP and CDP, for brands such as Nivea, TV Azteca, and GroupeSeb.">Responsable de la estrategia de first y third-party data para México, a través de la configuración, administración y comercialización del DMP y CDP Navegg, para marcas como Nivea, TV Azteca y GroupeSeb.</div>
           <div class="exp-bullets">
-            <div class="exp-bullet">Generé estudios de segmentación enfocados en modelos de precision-marketing y coordiné la implementación de audiencias en DSPs, ad servers y redes sociales.</div>
-            <div class="exp-bullet">Apoyé operaciones de research con herramientas como TGI, GWI y Comscore para el análisis del consumidor y la inversión publicitaria.</div>
+            <div class="exp-bullet" data-es="Generé estudios de segmentación enfocados en modelos de precision-marketing y coordiné la implementación de audiencias en DSPs, ad servers y redes sociales." data-en="Generated segmentation studies focused on precision-marketing models and coordinated audience implementation across DSPs, ad servers, and social media.">Generé estudios de segmentación enfocados en modelos de precision-marketing y coordiné la implementación de audiencias en DSPs, ad servers y redes sociales.</div>
+            <div class="exp-bullet" data-es="Apoyé operaciones de research con herramientas como TGI, GWI y Comscore para el análisis del consumidor y la inversión publicitaria." data-en="Supported research operations using tools such as TGI, GWI, and Comscore for consumer and advertising investment analysis.">Apoyé operaciones de research con herramientas como TGI, GWI y Comscore para el análisis del consumidor y la inversión publicitaria.</div>
           </div>
-          <div class="exp-achievement">↑ 40% mejora en KPIs de campaña para múltiples clientes</div>
-          <div class="exp-toggle">+ Ver detalle</div>
+          <div class="exp-achievement" data-es="↑ 40% mejora en KPIs de campaña para múltiples clientes" data-en="↑ 40% improvement in campaign KPIs across multiple clients">↑ 40% mejora en KPIs de campaña para múltiples clientes</div>
+          <div class="exp-toggle" data-es="+ Ver detalle" data-en="+ View details">+ Ver detalle</div>
         </div>
       </div>
 
-      <!-- Vanti -->
       <div class="exp-card reveal" onclick="toggleCard(this)">
         <div class="exp-meta">
-          <div class="exp-period">Mar 2019 — Sep 2020</div>
+          <div class="exp-period" data-es="Mar 2019 — Sep 2020" data-en="Mar 2019 — Sep 2020">Mar 2019 — Sep 2020</div>
           <div class="exp-company">Grupo Vanti</div>
           <div class="exp-location">Bogotá, Colombia</div>
         </div>
         <div>
-          <div class="exp-role">Analista de Investigación de Mercados</div>
-          <div class="exp-desc">Coordiné estudios cualitativos y cuantitativos enfocados en la experiencia del cliente en cada punto de contacto con la marca.</div>
+          <div class="exp-role" data-es="Analista de Investigación de Mercados" data-en="Market Research Analyst">Analista de Investigación de Mercados</div>
+          <div class="exp-desc" data-es="Coordiné estudios cualitativos y cuantitativos enfocados en la experiencia del cliente en cada punto de contacto con la marca." data-en="Coordinated qualitative and quantitative studies focused on the customer experience at each brand touchpoint.">Coordiné estudios cualitativos y cuantitativos enfocados en la experiencia del cliente en cada punto de contacto con la marca.</div>
           <div class="exp-bullets">
-            <div class="exp-bullet">Generé insights para estrategias de consumo, desarrollo de nuevos productos (Vanti Listo) y mejora del engagement con el cliente final.</div>
-            <div class="exp-bullet">Asesoré al área de marketing en procesos de comercialización, posicionamiento y comunicación de la marca.</div>
+            <div class="exp-bullet" data-es="Generé insights para estrategias de consumo, desarrollo de nuevos productos (Vanti Listo) y mejora del engagement con el cliente final." data-en="Generated insights for consumption strategies, new product development (Vanti Listo), and improvement of end-customer engagement.">Generé insights para estrategias de consumo, desarrollo de nuevos productos (Vanti Listo) y mejora del engagement con el cliente final.</div>
+            <div class="exp-bullet" data-es="Asesoré al área de marketing en procesos de comercialización, posicionamiento y comunicación de la marca." data-en="Advised the marketing team on commercialization, positioning, and brand communication processes.">Asesoré al área de marketing en procesos de comercialización, posicionamiento y comunicación de la marca.</div>
           </div>
-          <div class="exp-toggle">+ Ver detalle</div>
+          <div class="exp-toggle" data-es="+ Ver detalle" data-en="+ View details">+ Ver detalle</div>
         </div>
       </div>
 
-      <!-- Ipsos -->
       <div class="exp-card reveal" onclick="toggleCard(this)">
         <div class="exp-meta">
-          <div class="exp-period">Jul 2018 — Dic 2018</div>
+          <div class="exp-period" data-es="Jul 2018 — Dic 2018" data-en="Jul 2018 — Dec 2018">Jul 2018 — Dic 2018</div>
           <div class="exp-company">Ipsos</div>
           <div class="exp-location">Bogotá, Colombia</div>
         </div>
         <div>
-          <div class="exp-role">Practicante de Investigación de Mercados</div>
-          <div class="exp-desc">Apoyé el desarrollo de investigaciones en canales tradicionales (entrevistas, grupos focales, etnografías) y digitales (foros, social listening) para empresas de distintos sectores.</div>
+          <div class="exp-role" data-es="Practicante de Investigación de Mercados" data-en="Market Research Intern">Practicante de Investigación de Mercados</div>
+          <div class="exp-desc" data-es="Apoyé el desarrollo de investigaciones en canales tradicionales (entrevistas, grupos focales, etnografías) y digitales (foros, social listening) para empresas de distintos sectores." data-en="Supported market research in traditional channels (interviews, focus groups, ethnographies) and digital channels (forums, social listening) for companies across different sectors.">Apoyé el desarrollo de investigaciones en canales tradicionales (entrevistas, grupos focales, etnografías) y digitales (foros, social listening) para empresas de distintos sectores.</div>
           <div class="exp-bullets">
-            <div class="exp-bullet">Ejecuté planificación, recolección, análisis y elaboración de informes en diversas investigaciones de mercado.</div>
+            <div class="exp-bullet" data-es="Ejecuté planificación, recolección, análisis y elaboración de informes en diversas investigaciones de mercado." data-en="Executed planning, data collection, analysis, and report writing across various market research projects.">Ejecuté planificación, recolección, análisis y elaboración de informes en diversas investigaciones de mercado.</div>
           </div>
-          <div class="exp-toggle">+ Ver detalle</div>
+          <div class="exp-toggle" data-es="+ Ver detalle" data-en="+ View details">+ Ver detalle</div>
         </div>
       </div>
 
@@ -693,41 +273,35 @@
 <!-- EDUCACIÓN -->
 <section id="educacion">
   <div class="section-inner">
-    <div class="section-label">Educación</div>
+    <div class="section-label" data-es="Educación" data-en="Education">Educación</div>
     <div class="edu-grid">
-
       <div class="edu-card reveal">
-        <div class="edu-year">En curso · 2025–2026</div>
+        <div class="edu-year" data-es="En curso · 2025–2026" data-en="In progress · 2025–2026">En curso · 2025–2026</div>
         <div class="edu-institution">Universidad Internacional de La Rioja</div>
-        <div class="edu-degree">MBA — Maestría en Administración de Empresas</div>
-        <span class="edu-badge">Beca Icetex</span>
+        <div class="edu-degree" data-es="MBA — Maestría en Administración de Empresas" data-en="MBA — Master of Business Administration">MBA — Maestría en Administración de Empresas</div>
+        <span class="edu-badge" data-es="Beca Icetex" data-en="Icetex Scholarship">Beca Icetex</span>
       </div>
-
       <div class="edu-card reveal">
         <div class="edu-year">2015–2019</div>
         <div class="edu-institution">Universidad de los Andes</div>
-        <div class="edu-degree">Pregrado en Psicología + Opción en Antropología</div>
-        <span class="edu-badge">Beca Ser Pilo Paga</span>
+        <div class="edu-degree" data-es="Pregrado en Psicología + Opción en Antropología" data-en="Undergraduate in Psychology + Anthropology minor">Pregrado en Psicología + Opción en Antropología</div>
+        <span class="edu-badge" data-es="Beca Ser Pilo Paga" data-en="Ser Pilo Paga Scholarship">Beca Ser Pilo Paga</span>
       </div>
-
       <div class="edu-card reveal">
         <div class="edu-year">2020</div>
         <div class="edu-institution">University of California, Davis</div>
-        <div class="edu-degree">Especialización en Investigación de Mercados</div>
+        <div class="edu-degree" data-es="Especialización en Investigación de Mercados" data-en="Specialization in Market Research">Especialización en Investigación de Mercados</div>
       </div>
-
       <div class="edu-card reveal">
         <div class="edu-year">2020</div>
         <div class="edu-institution">Tecnológico de Monterrey</div>
-        <div class="edu-degree">Especialización en Marketing con Redes Sociales</div>
+        <div class="edu-degree" data-es="Especialización en Marketing con Redes Sociales" data-en="Specialization in Social Media Marketing">Especialización en Marketing con Redes Sociales</div>
       </div>
-
       <div class="edu-card reveal">
         <div class="edu-year">2020</div>
         <div class="edu-institution">Tecnológico de Monterrey</div>
-        <div class="edu-degree">Especialización en Análisis de Datos para la Toma de Decisiones</div>
+        <div class="edu-degree" data-es="Especialización en Análisis de Datos para la Toma de Decisiones" data-en="Specialization in Data Analysis for Decision Making">Especialización en Análisis de Datos para la Toma de Decisiones</div>
       </div>
-
     </div>
   </div>
 </section>
@@ -735,27 +309,68 @@
 <!-- LOGROS -->
 <section id="logros">
   <div class="section-inner">
-    <div class="section-label">Logros académicos</div>
+    <div class="section-label" data-es="Logros académicos" data-en="Academic achievements">Logros académicos</div>
     <div class="logros-grid">
-
       <div class="logro-card reveal">
         <div class="logro-year">2025</div>
-        <div class="logro-title">Beca Icetex para Maestrías en UNIR</div>
-        <div class="logro-desc">Beneficiario de la beca para cursar el MBA en la Universidad Internacional de La Rioja.</div>
+        <div class="logro-title" data-es="Beca Icetex para Maestrías en UNIR" data-en="Icetex Scholarship for Master's at UNIR">Beca Icetex para Maestrías en UNIR</div>
+        <div class="logro-desc" data-es="Beneficiario de la beca para cursar el MBA en la Universidad Internacional de La Rioja." data-en="Scholarship recipient to pursue the MBA at Universidad Internacional de La Rioja.">Beneficiario de la beca para cursar el MBA en la Universidad Internacional de La Rioja.</div>
       </div>
-
       <div class="logro-card reveal">
         <div class="logro-year">2017</div>
-        <div class="logro-title">Congreso Interamericano de Psicología — Yucatán, México</div>
-        <div class="logro-desc">Presenté los resultados de la investigación "Producción y apreciación del humor en la selección de parejas" ante la comunidad académica internacional.</div>
+        <div class="logro-title" data-es="Congreso Interamericano de Psicología — Yucatán, México" data-en="Inter-American Psychology Congress — Yucatán, Mexico">Congreso Interamericano de Psicología — Yucatán, México</div>
+        <div class="logro-desc" data-es='Presenté los resultados de la investigación "Producción y apreciación del humor en la selección de parejas" ante la comunidad académica internacional.' data-en='Presented the research findings of "Production and appreciation of humor in partner selection" to the international academic community.'>Presenté los resultados de la investigación "Producción y apreciación del humor en la selección de parejas" ante la comunidad académica internacional.</div>
       </div>
-
       <div class="logro-card reveal">
         <div class="logro-year">2015</div>
-        <div class="logro-title">Beca Ser Pilo Paga</div>
-        <div class="logro-desc">Beneficiario para estudiar Psicología en la Universidad de los Andes, una de las universidades más prestigiosas de Colombia.</div>
+        <div class="logro-title" data-es="Beca Ser Pilo Paga" data-en="Ser Pilo Paga Scholarship">Beca Ser Pilo Paga</div>
+        <div class="logro-desc" data-es="Beneficiario para estudiar Psicología en la Universidad de los Andes, una de las universidades más prestigiosas de Colombia." data-en="Scholarship recipient to study Psychology at Universidad de los Andes, one of Colombia's most prestigious universities.">Beneficiario para estudiar Psicología en la Universidad de los Andes, una de las universidades más prestigiosas de Colombia.</div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- HERRAMIENTAS -->
+<section id="herramientas">
+  <div class="section-inner">
+    <div class="section-label" data-es="Herramientas" data-en="Tools">Herramientas</div>
+    <div class="tools-grid">
+      <div class="tools-category reveal">
+        <div class="tools-cat-title" data-es="Paid Media & Plataformas" data-en="Paid Media & Platforms">Paid Media & Plataformas</div>
+        <div class="tools-list">
+          <span class="tool-pill">Meta Ads</span><span class="tool-pill">TikTok Ads</span><span class="tool-pill">Google Ads</span><span class="tool-pill">DV360</span><span class="tool-pill">Spotify Ads</span><span class="tool-pill" data-es="Programática" data-en="Programmatic">Programática</span>
+        </div>
+      </div>
+      <div class="tools-category reveal">
+        <div class="tools-cat-title" data-es="Analítica Digital" data-en="Digital Analytics">Analítica Digital</div>
+        <div class="tools-list">
+          <span class="tool-pill">GA4</span><span class="tool-pill">GTM</span><span class="tool-pill">Conversions API (CAPI)</span><span class="tool-pill">Power BI</span><span class="tool-pill">Data Studio</span><span class="tool-pill">Microsoft Clarity</span><span class="tool-pill">Google AdSense</span>
+        </div>
+      </div>
+      <div class="tools-category reveal">
+        <div class="tools-cat-title" data-es="Audiencias & Data" data-en="Audiences & Data">Audiencias & Data</div>
+        <div class="tools-list">
+          <span class="tool-pill">DMPs</span><span class="tool-pill">CDPs</span><span class="tool-pill">Navegg</span><span class="tool-pill">HubSpot</span><span class="tool-pill">Youscan</span><span class="tool-pill">Brandwatch</span>
+        </div>
+      </div>
+      <div class="tools-category reveal">
+        <div class="tools-cat-title" data-es="Research & Consumer Intelligence" data-en="Research & Consumer Intelligence">Research & Consumer Intelligence</div>
+        <div class="tools-list">
+          <span class="tool-pill">Global Web Index</span><span class="tool-pill">TGI</span><span class="tool-pill">Comscore</span><span class="tool-pill">Euromonitor</span><span class="tool-pill">MssAdspend</span><span class="tool-pill">MSS TV</span><span class="tool-pill">Google Insights</span>
+        </div>
+      </div>
+      <div class="tools-category reveal">
+        <div class="tools-cat-title" data-es="Investigación Cualitativa" data-en="Qualitative Research">Investigación Cualitativa</div>
+        <div class="tools-list">
+          <span class="tool-pill">Nvivo</span><span class="tool-pill">SPSS</span>
+        </div>
+      </div>
+      <div class="tools-category reveal">
+        <div class="tools-cat-title" data-es="Diseño & Creatividad" data-en="Design & Creativity">Diseño & Creatividad</div>
+        <div class="tools-list">
+          <span class="tool-pill">Illustrator</span><span class="tool-pill">Photoshop</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -764,95 +379,39 @@
   <p>Camilo Torres Riveros · <a href="mailto:camilo.torres.riveros@gmail.com">camilo.torres.riveros@gmail.com</a> · Bogotá, Colombia · 2026</p>
 </footer>
 
-<!-- HERRAMIENTAS -->
-<section id="herramientas">
-  <div class="section-inner">
-    <div class="section-label">Herramientas</div>
-    <div class="tools-grid">
-
-      <div class="tools-category reveal">
-        <div class="tools-cat-title">Paid Media & Plataformas</div>
-        <div class="tools-list">
-          <span class="tool-pill">Meta Ads</span>
-          <span class="tool-pill">TikTok Ads</span>
-          <span class="tool-pill">Google Ads</span>
-          <span class="tool-pill">DV360</span>
-          <span class="tool-pill">Spotify Ads</span>
-          <span class="tool-pill">Programática</span>
-        </div>
-      </div>
-
-      <div class="tools-category reveal">
-        <div class="tools-cat-title">Analítica Digital</div>
-        <div class="tools-list">
-          <span class="tool-pill">GA4</span>
-          <span class="tool-pill">GTM</span>
-          <span class="tool-pill">Conversions API (CAPI)</span>
-          <span class="tool-pill">Power BI</span>
-          <span class="tool-pill">Data Studio</span>
-          <span class="tool-pill">Microsoft Clarity</span>
-          <span class="tool-pill">Google AdSense</span>
-        </div>
-      </div>
-
-      <div class="tools-category reveal">
-        <div class="tools-cat-title">Audiencias & Data</div>
-        <div class="tools-list">
-          <span class="tool-pill">DMPs</span>
-          <span class="tool-pill">CDPs</span>
-          <span class="tool-pill">Navegg</span>
-          <span class="tool-pill">HubSpot</span>
-          <span class="tool-pill">Youscan</span>
-          <span class="tool-pill">Brandwatch</span>
-        </div>
-      </div>
-
-      <div class="tools-category reveal">
-        <div class="tools-cat-title">Research & Consumer Intelligence</div>
-        <div class="tools-list">
-          <span class="tool-pill">Global Web Index</span>
-          <span class="tool-pill">TGI</span>
-          <span class="tool-pill">Comscore</span>
-          <span class="tool-pill">Euromonitor</span>
-          <span class="tool-pill">MssAdspend</span>
-          <span class="tool-pill">MSS TV</span>
-          <span class="tool-pill">Google Insights</span>
-        </div>
-      </div>
-
-      <div class="tools-category reveal">
-        <div class="tools-cat-title">Investigación Cualitativa</div>
-        <div class="tools-list">
-          <span class="tool-pill">Nvivo</span>
-          <span class="tool-pill">SPSS</span>
-        </div>
-      </div>
-
-      <div class="tools-category reveal">
-        <div class="tools-cat-title">Diseño & Creatividad</div>
-        <div class="tools-list">
-          <span class="tool-pill">Illustrator</span>
-          <span class="tool-pill">Photoshop</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
 <script>
+let currentLang = 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+
+  document.querySelectorAll('.exp-toggle').forEach(toggle => {
+    if (!toggle.closest('.exp-card').classList.contains('active')) {
+      toggle.textContent = lang === 'es' ? '+ Ver detalle' : '+ View details';
+    } else {
+      toggle.textContent = lang === 'es' ? '— Ocultar detalle' : '— Hide details';
+    }
+  });
+}
+
 function toggleCard(card) {
   const isActive = card.classList.contains('active');
   document.querySelectorAll('.exp-card').forEach(c => {
     c.classList.remove('active');
     const t = c.querySelector('.exp-toggle');
-    if (t) t.textContent = '+ Ver detalle';
+    if (t) t.textContent = currentLang === 'es' ? '+ Ver detalle' : '+ View details';
   });
   if (!isActive) {
     card.classList.add('active');
     const toggle = card.querySelector('.exp-toggle');
-    if (toggle) toggle.textContent = '— Ocultar detalle';
+    if (toggle) toggle.textContent = currentLang === 'es' ? '— Ocultar detalle' : '— Hide details';
   }
 }
 
@@ -870,3 +429,4 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 </body>
 </html>
+
