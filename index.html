@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camilo Torres Riveros — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1a56db;
+    --blue-light: #e8f0fe;
+    --blue-mid: #3b82f6;
+    --accent: #f59e0b;
+    --accent-light: #fef3c7;
+    --dark: #0f172a;
+    --mid: #334155;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --surface: #f8fafc;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(15,23,42,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.4rem;
+    color: var(--white);
+  }
+
+  .hero-name .line2 {
+    color: var(--white);
+  }
+
+  .hero-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-title strong {
+    color: var(--blue-mid);
+    font-weight: 500;
+  }
+
+  .hero-summary {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.72);
+    max-width: 680px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    font-size: 0.76rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+
+  .tag-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
+  .tag-amber { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .tag-teal { background: rgba(20,184,166,0.12); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--dark);
+    background: var(--white);
+    padding: 10px 22px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .hero-cta:hover { background: #e2e8f0; transform: translateY(-1px); }
+
+  .hero-contact-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-contact-row a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .hero-contact-row a:hover { color: rgba(255,255,255,0.85); }
+
+  /* SECTIONS */
+  section {
+    padding: 5rem 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* EXPERIENCE */
+  .exp-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .exp-card {
+    display: grid;
+    grid-template-columns: 1fr 2.4fr;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.025);
+    transition: border-color 0.25s, background 0.25s;
+    cursor: pointer;
+  }
+
+  .exp-card:hover, .exp-card.active {
+    border-color: rgba(59,130,246,0.35);
+    background: rgba(59,130,246,0.04);
+  }
+
+  .exp-meta { padding-top: 2px; }
+
+  .exp-period {
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-company {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-location {
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+
+  .exp-role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--blue-mid);
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.01em;
+  }
+
+  .exp-desc {
+    font-size: 0.88rem;
+    line-height: 1.72;
+    color: rgba(255,255,255,0.62);
+    margin-bottom: 1rem;
+  }
+
+  .exp-bullets {
+    display: none;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .exp-card.active .exp-bullets { display: flex; }
+
+  .exp-bullet {
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    gap: 10px;
+  }
+
+  .exp-bullet::before {
+    content: '—';
+    color: var(--blue-mid);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .exp-achievement {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4ade80;
+    background: rgba(74,222,128,0.1);
+    border: 1px solid rgba(74,222,128,0.2);
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 0.75rem;
+  }
+
+  .exp-toggle {
+    font-size: 0.75rem;
+    color: var(--blue-mid);
+    margin-top: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .edu-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.2s;
+  }
+
+  .edu-card:hover { border-color: rgba(245,158,11,0.3); }
+
+  .edu-year {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+  }
+
+  .edu-institution {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+
+  .edu-degree {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .edu-badge {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(59,130,246,0.12);
+    color: #93c5fd;
+    border: 1px solid rgba(59,130,246,0.2);
+  }
+
+  /* LOGROS */
+  .logros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .logro-card {
+    padding: 1.75rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: border-color 0.2s;
+  }
+
+  .logro-card:hover { border-color: rgba(245,158,11,0.3); }
+
+  .logro-year {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  .logro-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .logro-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer p {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  footer a {
+    color: var(--blue-mid);
+    text-decoration: none;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { padding: 5rem 1.25rem 3rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .exp-card { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+
+  /* TOOLS */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tools-category {
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.2s;
+  }
+
+  .tools-category:hover { border-color: rgba(59,130,246,0.25); }
+
+  .tools-cat-title {
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 1rem;
+  }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tool-pill {
+    font-size: 0.76rem;
+    font-weight: 400;
+    padding: 4px 11px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.65);
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#inicio">CT<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#educacion">Educación</a></li>
+    <li><a href="#logros">Logros</a></li>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="mailto:camilo.torres.riveros@gmail.com">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Perfil profesional</div>
+    <h1 class="hero-name">
+      Camilo<br>
+      <span class="line2">Torres.</span>
+    </h1>
+    <p class="hero-title">Head of Audiences, Media & Performance · <strong>TuBoleta Colombia</strong></p>
+
+    <p class="hero-summary">
+      Psicólogo bilingüe con MBA y formación en Antropología. Más de 8 años de experiencia en agencias de medios, investigación de mercados y ecommerce. Especializado en estrategias de performance data-driven que conectan marcas con sus audiencias a través de canales pagos, propios y ganados — desde la segmentación hasta la medición y los resultados de negocio.
+    </p>
+
+    <div class="hero-tags">
+      <span class="tag tag-blue">Performance Marketing</span>
+      <span class="tag tag-blue">Marketing Digital</span>
+      <span class="tag tag-blue">Estrategia de Audiencias</span>
+      <span class="tag tag-blue">Medios Orgánicos</span>
+      <span class="tag tag-amber">First-Party Data</span>
+      <span class="tag tag-amber">CRM & Automatización</span>
+      <span class="tag tag-teal">Investigación de Mercados</span>
+      <span class="tag tag-teal">Analítica Digital</span>
+    </div>
+
+    <div>
+      <a class="hero-cta" href="https://www.linkedin.com/in/camilo-torres-riveros-96a07b149" target="_blank">
+        Ver LinkedIn →
+      </a>
+      <div class="hero-contact-row">
+        <a href="mailto:camilo.torres.riveros@gmail.com">✉ camilo.torres.riveros@gmail.com</a>
+        <a href="tel:+573012060405">📱 +57 301 206 0405</a>
+        <span style="color:rgba(255,255,255,0.35);font-size:0.82rem;">📍 Bogotá, Colombia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="section-inner">
+    <div class="section-label">Experiencia laboral</div>
+    <div class="exp-grid">
+
+      <!-- TuBoleta -->
+      <div class="exp-card reveal" onclick="toggleCard(this)">
+        <div class="exp-meta">
+          <div class="exp-period">Dic 2025 — Jun 2026</div>
+          <div class="exp-company">TuBoleta</div>
+          <div class="exp-location">Bogotá, Colombia</div>
+        </div>
+        <div>
+          <div class="exp-role">Head of Audiences, Media & Performance</div>
+          <div class="exp-desc">Responsable de liderar la estrategia digital desde los canales pagos, propios y ganados, con el objetivo de construir relaciones relevantes con el consumidor y maximizar el performance de las acciones de marketing con un enfoque data-driven; así como generar nuevas fuentes de monetización.</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Medios propios: Gestionar la configuración del CRM para garantizar una comunicación personalizada y relevante en cada etapa del journey del cliente, asegurando el uso eficiente de los canales propios y evitando la saturación de la audiencia.</div>
+            <div class="exp-bullet">Medios pagos: Definir la estrategia de paid media orientada a la maximización de ventas con un uso eficiente del presupuesto, acompañado de la expansión hacia nuevos canales publicitarios.</div>
+            <div class="exp-bullet">Medios ganados: Guiar la estrategia de redes sociales del grupo con foco en la construcción de comunidad, el crecimiento del engagement y la generación de contenido de valor.</div>
+            <div class="exp-bullet">Nuevas fuentes de ingreso: Desarrollar modelos de negocio orientados a la monetización de la first-party data y los activos digitales de la empresa.</div>
+            <div class="exp-bullet">Analítica y medición digital: Garantizar la medición y análisis integral del ecommerce mediante GA4, incluyendo la correcta configuración server-side para Meta, TikTok y Google Ads a través de GTM y Conversions API (CAPI).</div>
+          </div>
+          <div class="exp-toggle">+ Ver detalle</div>
+        </div>
+      </div>
+
+      <!-- Havas -->
+      <div class="exp-card reveal" onclick="toggleCard(this)">
+        <div class="exp-meta">
+          <div class="exp-period">Jun 2024 — Dic 2025</div>
+          <div class="exp-company">Havas</div>
+          <div class="exp-location">Bogotá, Colombia</div>
+        </div>
+        <div>
+          <div class="exp-role">Regional Audience Manager</div>
+          <div class="exp-desc">Lideré la implementación, mejora continua y monetización del DMP para Latinoamérica, posicionándolo como pilar fundamental en la estrategia de datos de los clientes del grupo.</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Gestioné la recolección de first-party data, enriquecimiento con third-party data y activación de audiencias en mercados de toda Latam.</div>
+            <div class="exp-bullet">Construí la visión regional para la unificación y activación del CDP global en cada mercado, maximizando la rentabilidad de campañas en medios pagos y propios.</div>
+            <div class="exp-bullet">Lideré la adopción regional de la suite Converged para segmentaciones avanzadas en Meta, TikTok y DV360.</div>
+          </div>
+          <div class="exp-achievement">↑ 30% mejora en CTR y CPC en campañas de branding</div>
+          <div class="exp-toggle">+ Ver detalle</div>
+        </div>
+      </div>
+
+      <!-- Dentsu -->
+      <div class="exp-card reveal" onclick="toggleCard(this)">
+        <div class="exp-meta">
+          <div class="exp-period">Abr 2021 — Jun 2024</div>
+          <div class="exp-company">Dentsu</div>
+          <div class="exp-location">Ciudad de México, México</div>
+        </div>
+        <div>
+          <div class="exp-role">Data & Research Analyst</div>
+          <div class="exp-desc">Responsable de la estrategia de first y third-party data para México, a través de la configuración, administración y comercialización del DMP y CDP Navegg, para marcas como Nivea, TV Azteca y GroupeSeb.</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Generé estudios de segmentación enfocados en modelos de precision-marketing y coordiné la implementación de audiencias en DSPs, ad servers y redes sociales.</div>
+            <div class="exp-bullet">Apoyé operaciones de research con herramientas como TGI, GWI y Comscore para el análisis del consumidor y la inversión publicitaria.</div>
+          </div>
+          <div class="exp-achievement">↑ 40% mejora en KPIs de campaña para múltiples clientes</div>
+          <div class="exp-toggle">+ Ver detalle</div>
+        </div>
+      </div>
+
+      <!-- Vanti -->
+      <div class="exp-card reveal" onclick="toggleCard(this)">
+        <div class="exp-meta">
+          <div class="exp-period">Mar 2019 — Sep 2020</div>
+          <div class="exp-company">Grupo Vanti</div>
+          <div class="exp-location">Bogotá, Colombia</div>
+        </div>
+        <div>
+          <div class="exp-role">Analista de Investigación de Mercados</div>
+          <div class="exp-desc">Coordiné estudios cualitativos y cuantitativos enfocados en la experiencia del cliente en cada punto de contacto con la marca.</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Generé insights para estrategias de consumo, desarrollo de nuevos productos (Vanti Listo) y mejora del engagement con el cliente final.</div>
+            <div class="exp-bullet">Asesoré al área de marketing en procesos de comercialización, posicionamiento y comunicación de la marca.</div>
+          </div>
+          <div class="exp-toggle">+ Ver detalle</div>
+        </div>
+      </div>
+
+      <!-- Ipsos -->
+      <div class="exp-card reveal" onclick="toggleCard(this)">
+        <div class="exp-meta">
+          <div class="exp-period">Jul 2018 — Dic 2018</div>
+          <div class="exp-company">Ipsos</div>
+          <div class="exp-location">Bogotá, Colombia</div>
+        </div>
+        <div>
+          <div class="exp-role">Practicante de Investigación de Mercados</div>
+          <div class="exp-desc">Apoyé el desarrollo de investigaciones en canales tradicionales (entrevistas, grupos focales, etnografías) y digitales (foros, social listening) para empresas de distintos sectores.</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Ejecuté planificación, recolección, análisis y elaboración de informes en diversas investigaciones de mercado.</div>
+          </div>
+          <div class="exp-toggle">+ Ver detalle</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCACIÓN -->
+<section id="educacion">
+  <div class="section-inner">
+    <div class="section-label">Educación</div>
+    <div class="edu-grid">
+
+      <div class="edu-card reveal">
+        <div class="edu-year">En curso · 2025–2026</div>
+        <div class="edu-institution">Universidad Internacional de La Rioja</div>
+        <div class="edu-degree">MBA — Maestría en Administración de Empresas</div>
+        <span class="edu-badge">Beca Icetex</span>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2015–2019</div>
+        <div class="edu-institution">Universidad de los Andes</div>
+        <div class="edu-degree">Pregrado en Psicología + Opción en Antropología</div>
+        <span class="edu-badge">Beca Ser Pilo Paga</span>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2020</div>
+        <div class="edu-institution">University of California, Davis</div>
+        <div class="edu-degree">Especialización en Investigación de Mercados</div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2020</div>
+        <div class="edu-institution">Tecnológico de Monterrey</div>
+        <div class="edu-degree">Especialización en Marketing con Redes Sociales</div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2020</div>
+        <div class="edu-institution">Tecnológico de Monterrey</div>
+        <div class="edu-degree">Especialización en Análisis de Datos para la Toma de Decisiones</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOGROS -->
+<section id="logros">
+  <div class="section-inner">
+    <div class="section-label">Logros académicos</div>
+    <div class="logros-grid">
+
+      <div class="logro-card reveal">
+        <div class="logro-year">2025</div>
+        <div class="logro-title">Beca Icetex para Maestrías en UNIR</div>
+        <div class="logro-desc">Beneficiario de la beca para cursar el MBA en la Universidad Internacional de La Rioja.</div>
+      </div>
+
+      <div class="logro-card reveal">
+        <div class="logro-year">2017</div>
+        <div class="logro-title">Congreso Interamericano de Psicología — Yucatán, México</div>
+        <div class="logro-desc">Presenté los resultados de la investigación "Producción y apreciación del humor en la selección de parejas" ante la comunidad académica internacional.</div>
+      </div>
+
+      <div class="logro-card reveal">
+        <div class="logro-year">2015</div>
+        <div class="logro-title">Beca Ser Pilo Paga</div>
+        <div class="logro-desc">Beneficiario para estudiar Psicología en la Universidad de los Andes, una de las universidades más prestigiosas de Colombia.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Camilo Torres Riveros · <a href="mailto:camilo.torres.riveros@gmail.com">camilo.torres.riveros@gmail.com</a> · Bogotá, Colombia · 2026</p>
+</footer>
+
+<!-- HERRAMIENTAS -->
+<section id="herramientas">
+  <div class="section-inner">
+    <div class="section-label">Herramientas</div>
+    <div class="tools-grid">
+
+      <div class="tools-category reveal">
+        <div class="tools-cat-title">Paid Media & Plataformas</div>
+        <div class="tools-list">
+          <span class="tool-pill">Meta Ads</span>
+          <span class="tool-pill">TikTok Ads</span>
+          <span class="tool-pill">Google Ads</span>
+          <span class="tool-pill">DV360</span>
+          <span class="tool-pill">Spotify Ads</span>
+          <span class="tool-pill">Programática</span>
+        </div>
+      </div>
+
+      <div class="tools-category reveal">
+        <div class="tools-cat-title">Analítica Digital</div>
+        <div class="tools-list">
+          <span class="tool-pill">GA4</span>
+          <span class="tool-pill">GTM</span>
+          <span class="tool-pill">Conversions API (CAPI)</span>
+          <span class="tool-pill">Power BI</span>
+          <span class="tool-pill">Data Studio</span>
+          <span class="tool-pill">Microsoft Clarity</span>
+          <span class="tool-pill">Google AdSense</span>
+        </div>
+      </div>
+
+      <div class="tools-category reveal">
+        <div class="tools-cat-title">Audiencias & Data</div>
+        <div class="tools-list">
+          <span class="tool-pill">DMPs</span>
+          <span class="tool-pill">CDPs</span>
+          <span class="tool-pill">Navegg</span>
+          <span class="tool-pill">HubSpot</span>
+          <span class="tool-pill">Youscan</span>
+          <span class="tool-pill">Brandwatch</span>
+        </div>
+      </div>
+
+      <div class="tools-category reveal">
+        <div class="tools-cat-title">Research & Consumer Intelligence</div>
+        <div class="tools-list">
+          <span class="tool-pill">Global Web Index</span>
+          <span class="tool-pill">TGI</span>
+          <span class="tool-pill">Comscore</span>
+          <span class="tool-pill">Euromonitor</span>
+          <span class="tool-pill">MssAdspend</span>
+          <span class="tool-pill">MSS TV</span>
+          <span class="tool-pill">Google Insights</span>
+        </div>
+      </div>
+
+      <div class="tools-category reveal">
+        <div class="tools-cat-title">Investigación Cualitativa</div>
+        <div class="tools-list">
+          <span class="tool-pill">Nvivo</span>
+          <span class="tool-pill">SPSS</span>
+        </div>
+      </div>
+
+      <div class="tools-category reveal">
+        <div class="tools-cat-title">Diseño & Creatividad</div>
+        <div class="tools-list">
+          <span class="tool-pill">Illustrator</span>
+          <span class="tool-pill">Photoshop</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+function toggleCard(card) {
+  const isActive = card.classList.contains('active');
+  document.querySelectorAll('.exp-card').forEach(c => {
+    c.classList.remove('active');
+    const t = c.querySelector('.exp-toggle');
+    if (t) t.textContent = '+ Ver detalle';
+  });
+  if (!isActive) {
+    card.classList.add('active');
+    const toggle = card.querySelector('.exp-toggle');
+    if (toggle) toggle.textContent = '— Ocultar detalle';
+  }
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
